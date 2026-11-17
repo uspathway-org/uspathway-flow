@@ -615,7 +615,7 @@
       "text": { "en": "If needed, would a friend or relative agree to be a joint financial sponsor?", "es": "Si fuera necesario, ¿un amigo o familiar aceptaría ser patrocinador financiero conjunto?" },
       "answers": [
         { "id": "yes", "flag": "joint_sponsor" },
-        { "id": "no", "flag": "joint_sponsor", "byService": { "k1": { "stop": "sponsor_income", "flag": null } } },
+        { "id": "no", "flag": "joint_sponsor" },
         { "id": "not_sure", "flag": "joint_sponsor" }
       ]
     }
@@ -685,7 +685,6 @@
     "k1_intent": { "en": "A K-1 visa requires a clear plan to marry within 90 days of the fiancé(e) arriving in the U.S.", "es": "Una visa K-1 requiere un plan claro de casarse dentro de los 90 días después de que el/la prometido(a) llegue a los EE. UU." },
     "k1_not_met": { "en": "K-1 applicants must have met in person at least once in the 2 years before filing.", "es": "Los solicitantes de K-1 deben haberse conocido en persona al menos una vez en los 2 años antes de presentar la solicitud." },
     "k1_sponsor_imbra": { "en": "U.S. law requires extra review when the sponsor has this kind of history. Please contact an immigration attorney.", "es": "La ley de EE. UU. requiere una revisión adicional cuando el patrocinador tiene este tipo de antecedentes. Por favor comuníquese con un abogado de inmigración." },
-    "sponsor_income": { "en": "A K-1 sponsor needs enough income, or a joint sponsor. Please contact an immigration attorney.", "es": "Un patrocinador de K-1 necesita ingresos suficientes o un patrocinador conjunto. Por favor comuníquese con un abogado de inmigración." },
     "criminal_pending": { "en": "Because a case is still pending, an attorney should review your situation before anything is filed. This doesn't necessarily mean you aren't eligible.", "es": "Como hay un caso todavía pendiente, un abogado debe revisar su situación antes de presentar cualquier cosa. Esto no significa necesariamente que usted no sea elegible." },
     "criminal_serious": { "en": "Because of this type of conviction, an attorney should review your situation before anything is filed. This doesn't necessarily mean you aren't eligible.", "es": "Por este tipo de condena, un abogado debe revisar su situación antes de presentar cualquier cosa. Esto no significa necesariamente que usted no sea elegible." }
   },
