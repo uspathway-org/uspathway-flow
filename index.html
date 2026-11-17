@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Immigration Service Fit Check | USpathway</title>
+  <meta name="description" content="Find out in a few minutes whether USpathway's document preparation service fits your immigration case.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2b3585">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="test-banner" class="test-banner" hidden></div>
+  <header class="top">
+    <a class="logo" href="https://www.uspathway.org/" aria-label="USpathway.org home">
+      <img src="assets/logo.png" alt="USpathway.org" width="160" height="45">
+    </a>
+    <button id="lang" class="lang" type="button" lang="es">Español</button>
+  </header>
+
+  <div id="progress" class="progress" hidden>
+    <div class="progress-row">
+      <span id="progress-section" class="progress-section"></span>
+      <span id="progress-percent" class="progress-percent"></span>
+    </div>
+    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <main id="main" class="main" tabindex="-1">
+    <noscript><p class="screen">Please turn on JavaScript to use this page, or email support@uspathway.org.</p></noscript>
+    <p class="loading">Loading…</p>
+  </main>
+
+  <nav class="nav" id="nav" hidden>
+    <button type="button" id="back" class="nav-btn"><span aria-hidden="true">←</span> <span id="back-label">Back</span></button>
+    <button type="button" id="forward" class="nav-btn"><span id="forward-label">Forward</span> <span aria-hidden="true">→</span></button>
+  </nav>
+
+  <div id="live" class="sr-only" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
