@@ -150,7 +150,7 @@
     "R": { "start": "R1" },
     "K": { "start": "K1" },
     "CH": { "start": "CH1" },
-    "SP": { "start": "SP1" }
+    "SP": { "start": "SP2" }
   },
 
   "questions": {
@@ -201,7 +201,12 @@
     "B3": {
       "section": "relationship", "next": "END",
       "text": { "en": "Did the marriage happen after the person applying's most recent entry into the U.S.?", "es": "¿El matrimonio ocurrió después de la entrada más reciente de la persona que solicita a los EE. UU.?" },
-      "answers": [ { "id": "yes" }, { "id": "no" }, { "id": "not_sure", "flag": "marriage_after_entry" } ]
+      "answers": [ { "id": "yes", "next": "B3b" }, { "id": "no" }, { "id": "not_sure", "flag": "marriage_after_entry", "flagValue": "not sure if before or after entry" } ]
+    },
+    "B3b": {
+      "section": "relationship", "next": "END",
+      "text": { "en": "Did the marriage happen within 90 days after that entry?", "es": "¿El matrimonio ocurrió dentro de los 90 días después de esa entrada?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "flag": "marriage_after_entry", "flagValue": "within 90 days of entry" }, { "id": "not_sure", "flag": "marriage_after_entry", "flagValue": "not sure if within 90 days of entry" } ]
     },
     "B4": {
       "section": "relationship", "next": "END",
@@ -441,11 +446,16 @@
       "section": "marriage",
       "text": { "en": "What is the current marriage status?", "es": "¿Cuál es el estado actual del matrimonio?" },
       "answers": [
-        { "id": "married", "next": "R5", "label": { "en": "Still married", "es": "Todavía casados" } },
-        { "id": "divorced", "next": "R6", "label": { "en": "Divorced or annulled", "es": "Divorciados o matrimonio anulado" } },
+        { "id": "married", "next": "R4b", "label": { "en": "Still married", "es": "Todavía casados" } },
+        { "id": "divorced", "next": "R6", "flag": "waiver_divorce", "label": { "en": "Divorced or annulled", "es": "Divorciados o matrimonio anulado" } },
         { "id": "separated", "stop": "divorce_pending", "label": { "en": "Separated, divorce not final", "es": "Separados, el divorcio no es final" } },
-        { "id": "widowed", "next": "R7", "flag": "waiver_widow", "label": { "en": "Spouse passed away", "es": "El/la cónyuge falleció" } }
+        { "id": "widowed", "next": "R6", "flag": "waiver_widow", "label": { "en": "Spouse passed away", "es": "El/la cónyuge falleció" } }
       ]
+    },
+    "R4b": {
+      "section": "marriage",
+      "text": { "en": "Will the spouse sign and file the application together with the person applying?", "es": "¿El/la cónyuge firmará y presentará la solicitud junto con la persona que solicita?" },
+      "answers": [ { "id": "yes", "next": "R5" }, { "id": "no", "next": "R6", "flag": "waiver_married" }, { "id": "not_sure", "next": "R6", "flag": "waiver_married", "flagValue": "not sure" } ]
     },
     "R5": {
       "section": "marriage", "next": "END",
@@ -454,8 +464,8 @@
     },
     "R6": {
       "section": "marriage", "next": "R7",
-      "text": { "en": "Do you have documents showing you entered the marriage in good faith, even though it ended?", "es": "¿Tiene documentos que demuestren que se casó de buena fe, aunque el matrimonio terminó?" },
-      "answers": [ { "id": "yes", "flag": "waiver_divorce" }, { "id": "no", "stop": "attorney_needed" } ]
+      "text": { "en": "Do you have documents showing the marriage was real (entered in good faith)? (for example, joint lease, bank accounts, photos, children's birth certificates)", "es": "¿Tiene documentos que demuestren que el matrimonio fue real (de buena fe)? (por ejemplo, contrato de renta conjunto, cuentas bancarias, fotos, actas de nacimiento de los hijos)" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "attorney_needed" } ]
     },
     "R7": {
       "section": "marriage", "next": "R8",
@@ -558,28 +568,50 @@
       "answers": [ { "id": "no", "flag": "criminal_conviction" }, { "id": "yes", "stop": "criminal_serious" }, { "id": "not_sure", "flag": "criminal_unsure" } ]
     },
 
-    "SP1": {
+    "SP2": {
       "section": "sponsor",
-      "text": { "en": "What is the sponsor (the U.S. citizen petitioner)'s approximate yearly income?", "es": "¿Cuál es el ingreso anual aproximado del patrocinador (el peticionario ciudadano estadounidense)?" },
+      "text": { "en": "How many people are in the sponsor's household? Count the sponsor, the person applying, and anyone else the sponsor supports.", "es": "¿Cuántas personas hay en el hogar del patrocinador? Cuente al patrocinador, a la persona que solicita y a cualquier otra persona que el patrocinador mantiene." },
       "answers": [
-        { "id": "low", "next": "SP3", "label": { "en": "Below {cutoff}", "es": "Menos de {cutoff}" } },
-        { "id": "mid", "next": "SP2", "label": { "en": "{cutoff}–$50,000", "es": "{cutoff} a $50,000" } },
-        { "id": "high", "next": "SP2", "label": { "en": "$50,000 or more", "es": "$50,000 o más" } },
+        { "id": "h2", "next": "SP1h2", "label": { "en": "2", "es": "2" } },
+        { "id": "h3", "next": "SP1h3", "label": { "en": "3", "es": "3" } },
+        { "id": "h4", "next": "SP1h4", "label": { "en": "4", "es": "4" } },
+        { "id": "h5", "next": "SP1h5", "label": { "en": "5", "es": "5" } },
+        { "id": "h6plus", "next": "SP1h6", "label": { "en": "6 or more", "es": "6 o más" } },
         { "id": "not_sure", "next": "SP3", "flag": null }
       ]
     },
-    "SP2": {
-      "section": "sponsor", "next": "END",
-      "text": { "en": "How many people are in the sponsor's household, including the person applying?", "es": "¿Cuántas personas hay en el hogar del patrocinador, incluyendo a la persona que solicita?" },
-      "answers": [
-        { "id": "1to2", "label": { "en": "1–2", "es": "1 a 2" } },
-        { "id": "3to4", "label": { "en": "3–4", "es": "3 a 4" } },
-        { "id": "5plus", "label": { "en": "5 or more", "es": "5 o más" } },
-        { "id": "not_sure", "flag": null }
-      ]
+    "SP1h2": {
+      "section": "sponsor",
+      "text": { "en": "Is the sponsor's yearly income at least {income_h2}?", "es": "¿El ingreso anual del patrocinador es de al menos {income_h2}?" },
+      "help": { "en": "This is the government's minimum for a household of 2.", "es": "Este es el mínimo del gobierno para un hogar de 2 personas." },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "SP3" }, { "id": "not_sure", "next": "SP3", "flag": null } ]
+    },
+    "SP1h3": {
+      "section": "sponsor",
+      "text": { "en": "Is the sponsor's yearly income at least {income_h3}?", "es": "¿El ingreso anual del patrocinador es de al menos {income_h3}?" },
+      "help": { "en": "This is the government's minimum for a household of 3.", "es": "Este es el mínimo del gobierno para un hogar de 3 personas." },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "SP3" }, { "id": "not_sure", "next": "SP3", "flag": null } ]
+    },
+    "SP1h4": {
+      "section": "sponsor",
+      "text": { "en": "Is the sponsor's yearly income at least {income_h4}?", "es": "¿El ingreso anual del patrocinador es de al menos {income_h4}?" },
+      "help": { "en": "This is the government's minimum for a household of 4.", "es": "Este es el mínimo del gobierno para un hogar de 4 personas." },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "SP3" }, { "id": "not_sure", "next": "SP3", "flag": null } ]
+    },
+    "SP1h5": {
+      "section": "sponsor",
+      "text": { "en": "Is the sponsor's yearly income at least {income_h5}?", "es": "¿El ingreso anual del patrocinador es de al menos {income_h5}?" },
+      "help": { "en": "This is the government's minimum for a household of 5.", "es": "Este es el mínimo del gobierno para un hogar de 5 personas." },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "SP3" }, { "id": "not_sure", "next": "SP3", "flag": null } ]
+    },
+    "SP1h6": {
+      "section": "sponsor",
+      "text": { "en": "Is the sponsor's yearly income at least {income_h6}?", "es": "¿El ingreso anual del patrocinador es de al menos {income_h6}?" },
+      "help": { "en": "This is the government's minimum for a household of 6 (add {income_extra} for each person over 6).", "es": "Este es el mínimo del gobierno para un hogar de 6 personas (sume {income_extra} por cada persona adicional)." },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "SP3" }, { "id": "not_sure", "next": "SP3", "flag": null } ]
     },
     "SP3": {
-      "section": "sponsor", "next": "SP2",
+      "section": "sponsor", "next": "END",
       "text": { "en": "If needed, would a friend or relative agree to be a joint financial sponsor?", "es": "Si fuera necesario, ¿un amigo o familiar aceptaría ser patrocinador financiero conjunto?" },
       "answers": [
         { "id": "yes", "flag": "joint_sponsor" },
@@ -601,7 +633,7 @@
     "court_unsure": { "category": "Immigration history", "label": "Not sure about immigration court" },
     "status_expired": { "category": "Immigration history", "label": "Status expired" },
     "prior_application": { "category": "Immigration history", "label": "Earlier application denied or still pending" },
-    "marriage_after_entry": { "category": "Relationship", "label": "Not sure whether the marriage came before or after the last entry" },
+    "marriage_after_entry": { "category": "Relationship", "label": "Marriage timing after last entry (90-day rule)" },
     "longest_trip": { "category": "Travel", "label": "AOS – trip abroad since last entry" },
     "long_trip": { "category": "Travel", "label": "N-400 – trip of more than 6 months since getting the green card" },
     "no_green_card": { "category": "Documents", "label": "Green card not in their possession" },
@@ -609,11 +641,12 @@
     "basis_national": { "category": "Eligibility", "label": "N-400 as a U.S. national" },
     "basis_other": { "category": "Eligibility", "label": "N-400 – \"Other\" basis" },
     "spouse_citizen_time": { "category": "Eligibility", "label": "3-year rule – spouse not a citizen the whole time" },
-    "joint_sponsor": { "category": "Financial", "label": "Sponsor income low or unknown and no joint sponsor confirmed" },
+    "joint_sponsor": { "category": "Financial", "label": "Sponsor income below the legal minimum or unknown" },
     "card_info_change": { "category": "Documents", "label": "I-90 – card information changed or wrong" },
     "i751_late": { "category": "Timing", "label": "I-751 – conditional card already expired" },
     "good_faith_docs": { "category": "Documents", "label": "I-751 – may lack good-faith marriage documents" },
     "waiver_divorce": { "category": "Eligibility", "label": "I-751 – divorced or annulled; waiver needed" },
+    "waiver_married": { "category": "Eligibility", "label": "I-751 – still married but spouse may not file jointly; waiver needed" },
     "waiver_widow": { "category": "Eligibility", "label": "I-751 – spouse died; waiver needed" },
     "waiver_hardship": { "category": "Eligibility", "label": "I-751 – claims extreme hardship" },
     "child_docs": { "category": "Documents", "label": "I-751 child – may lack residence or relationship documents" },

@@ -30,7 +30,9 @@ export function createEngine(flow, config) {
   function vars(service, lang) {
     const svc = flow.services[service];
     const person = flow.people[svc ? svc.person : 'applicant'];
-    return { person: person[lang], cutoff: usd(config.sponsorIncomeScreen, lang) };
+    const v = { person: person[lang] };
+    for (const [k, n] of Object.entries(config.sponsorIncomeLines || {})) v['income_' + k] = usd(n, lang);
+    return v;
   }
   function blockStart(service, idx) { return flow.blocks[flow.services[service].blocks[idx]].start; }
   function resolveAnswer(q, id, service) {

@@ -12,8 +12,9 @@ export const CONFIG = {
 
   supportEmail: 'support@uspathway.org',
 
-  // SP1 income screen cutoff in US dollars [confirm]. Simple screen, not the legal poverty-guideline test.
-  sponsorIncomeScreen: 25000,
+  // Sponsor income minimums by household size: 125% of the HHS poverty guidelines (USCIS Form I-864P),
+  // 48 states + D.C., effective 2026-03-01. Update each spring from https://www.uscis.gov/i-864p
+  sponsorIncomeLines: { h2: 27050, h3: 34150, h4: 41250, h5: 48350, h6: 55450, extra: 7100 },
 
   // online: false switches a service to the waitlist screen.
   // paymentLink: the Stripe Payment Link for that service. Placeholders until M3.
