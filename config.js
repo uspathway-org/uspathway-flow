@@ -17,12 +17,13 @@ export const CONFIG = {
   sponsorIncomeLines: { h2: 27050, h3: 34150, h4: 41250, h5: 48350, h6: 55450, extra: 7100 },
 
   // online: false switches a service to the waitlist screen.
-  // paymentLink: the Stripe Payment Link for that service. Placeholders until M3.
+  // paymentLink: the Stripe Payment Link for that service (test mode links until go-live, M5.3).
+  // Prices must match the price on the Stripe link. Confirmed by Sateki 2026-11-17.
   services: {
-    aos:  { price: 1099, online: true, paymentLink: 'https://buy.stripe.com/test_REPLACE_IN_M3_aos' },
-    n400: { price: 749,  online: true, paymentLink: 'https://buy.stripe.com/test_REPLACE_IN_M3_n400' },
-    i90:  { price: 499,  online: true, paymentLink: 'https://buy.stripe.com/test_REPLACE_IN_M3_i90' },   // price [confirm]
-    i751: { price: 449,  online: true, paymentLink: 'https://buy.stripe.com/test_REPLACE_IN_M3_i751' },  // price [confirm]
-    k1:   { price: 998,  online: true, paymentLink: 'https://buy.stripe.com/test_REPLACE_IN_M3_k1' }     // price [confirm]
+    aos:  { price: 1099, online: true, paymentLink: 'https://buy.stripe.com/test_bJebJ1fCJbe164edzvcs804' },
+    n400: { price: 749,  online: true, paymentLink: 'https://buy.stripe.com/test_eVq5kD0HP5THakugLHcs803' },
+    i90:  { price: 499,  online: true, paymentLink: 'https://buy.stripe.com/test_dRm00j8ah2Hv1NY1QNcs802' },
+    i751: { price: 449,  online: true, paymentLink: 'https://buy.stripe.com/test_28E28r0HP6XLgISdzvcs801' },
+    k1:   { price: 998,  online: true, paymentLink: 'https://buy.stripe.com/test_eVqcN54Y52HveAKcvrcs800' }
   }
 };
