@@ -1,0 +1,841 @@
+{
+  "version": 2,
+  "es_reviewed": false,
+  "_readme": "All customer wording, questions, answers and branching. Edit here only; app.js never holds wording. Answer fields: id, label, next (question id or END = end of this block), stop (STOP code), flag (flag code, or null = no flag), flagValue (extra detail shown to staff), switchTo (GOTO another service), back (go back one screen), byService (overrides per service). An answer with id not_sure gets the not_sure flag unless it sets flag or stop. Spanish is a draft by Claude until es_reviewed is true.",
+
+  "ui": {
+    "title": { "en": "Immigration Service Fit Check", "es": "Evaluación de Servicio de Inmigración" },
+    "subtitle": { "en": "About 2–4 minutes. Answer for the person applying.", "es": "Toma de 2 a 4 minutos. Responda sobre la persona que solicita." },
+    "disclaimer": { "en": "This is not legal advice and does not create an attorney-client relationship. If you are unsure about an answer, choose 'Not sure.'", "es": "Esto no es asesoría legal y no crea una relación abogado-cliente. Si no está seguro(a) de una respuesta, elija 'No estoy seguro(a)'." },
+    "disclaimerShort": { "en": "This is not legal advice and does not create an attorney-client relationship.", "es": "Esto no es asesoría legal y no crea una relación abogado-cliente." },
+    "start": { "en": "Start", "es": "Comenzar" },
+    "back": { "en": "Back", "es": "Atrás" },
+    "forward": { "en": "Forward", "es": "Adelante" },
+    "next": { "en": "Next", "es": "Siguiente" },
+    "langSwitch": { "en": "Español", "es": "English" },
+    "langSwitchLabel": { "en": "Cambiar a español", "es": "Switch to English" },
+    "testBanner": { "en": "TEST MODE — no real payments", "es": "MODO DE PRUEBA — sin pagos reales" },
+    "progressLabel": { "en": "Progress", "es": "Progreso" },
+    "selectCountry": { "en": "Choose a country", "es": "Elija un país" },
+    "resumeSaved": { "en": "Welcome back. We saved your progress.", "es": "Bienvenido(a) de nuevo. Guardamos su progreso." },
+    "startOver": { "en": "Start over", "es": "Empezar de nuevo" },
+    "startOverConfirm": { "en": "Start over? Your answers on this device will be cleared.", "es": "¿Empezar de nuevo? Se borrarán sus respuestas en este dispositivo." },
+
+    "contactTitle": { "en": "How can we reach you?", "es": "¿Cómo podemos comunicarnos con usted?" },
+    "contactTitleEmailMe": { "en": "Leave your email", "es": "Deje su correo electrónico" },
+    "firstName": { "en": "First name", "es": "Nombre" },
+    "lastName": { "en": "Last name", "es": "Apellido" },
+    "email": { "en": "Email", "es": "Correo electrónico" },
+    "emailHelp": { "en": "We use this email to send next steps, request follow-up information if needed, and provide access to our secure document system.", "es": "Usamos este correo para enviarle los siguientes pasos, pedirle información adicional si es necesario y darle acceso a nuestro sistema seguro de documentos." },
+    "phone": { "en": "Phone (optional)", "es": "Teléfono (opcional)" },
+    "textOk": { "en": "It's OK to text me about my request", "es": "Está bien enviarme mensajes de texto sobre mi solicitud" },
+    "referral": { "en": "Did someone recommend USpathway to you? If so, who? (person, business, or organization)", "es": "¿Alguien le recomendó USpathway? Si es así, ¿quién? (persona, negocio u organización)" },
+    "optional": { "en": "optional", "es": "opcional" },
+    "sponsorHeading": { "en": "U.S. citizen sponsor (optional)", "es": "Patrocinador ciudadano estadounidense (opcional)" },
+    "sponsorFirstName": { "en": "Sponsor's first name", "es": "Nombre del patrocinador" },
+    "sponsorLastName": { "en": "Sponsor's last name", "es": "Apellido del patrocinador" },
+    "sponsorEmail": { "en": "Sponsor's email", "es": "Correo electrónico del patrocinador" },
+    "required": { "en": "Required", "es": "Obligatorio" },
+    "errRequired": { "en": "Please fill this in.", "es": "Por favor complete este campo." },
+    "errEmail": { "en": "Please enter a valid email address.", "es": "Por favor escriba un correo electrónico válido." },
+    "errPhone": { "en": "Please enter a valid phone number, or leave it blank.", "es": "Por favor escriba un número de teléfono válido, o déjelo en blanco." },
+    "submit": { "en": "Continue", "es": "Continuar" },
+    "sendEmail": { "en": "Send", "es": "Enviar" },
+
+    "continueTitle": { "en": "You're ready to continue.", "es": "Está listo(a) para continuar." },
+    "continueText": { "en": "Next, you'll review important disclosures about our document preparation service, including what we do and do not provide. After reviewing them, you can decide whether to continue to payment.", "es": "A continuación, revisará información importante sobre nuestro servicio de preparación de documentos, incluyendo lo que ofrecemos y lo que no. Después de revisarla, puede decidir si desea continuar al pago." },
+    "reviewDisclosures": { "en": "Review disclosures", "es": "Revisar la información" },
+
+    "reviewTitle": { "en": "Thanks for completing this step.", "es": "Gracias por completar este paso." },
+    "reviewText": { "en": "Based on your responses, your situation may still be eligible to move forward, but it requires a brief review before continuing.", "es": "Según sus respuestas, su situación todavía podría avanzar, pero necesita una breve revisión antes de continuar." },
+    "reviewNextHeading": { "en": "What happens next", "es": "Qué sigue" },
+    "reviewNext1": { "en": "Our team will review your information.", "es": "Nuestro equipo revisará su información." },
+    "reviewNext2": { "en": "We may follow up by email if anything needs clarification.", "es": "Es posible que le escribamos por correo electrónico si algo necesita aclaración." },
+    "reviewNext3": { "en": "If your case is a fit for our document preparation service, you'll receive a link to continue.", "es": "Si su caso es adecuado para nuestro servicio de preparación de documentos, recibirá un enlace para continuar." },
+    "reviewTime": { "en": "This review usually takes up to 3 business days.", "es": "Esta revisión normalmente toma hasta 3 días hábiles." },
+
+    "stopEnd": { "en": "We're unable to proceed further with this intake. This is not legal advice.", "es": "No podemos continuar con esta solicitud. Esto no es asesoría legal." },
+    "stopTitle": { "en": "Thank you for your answers", "es": "Gracias por sus respuestas" },
+    "emailMe": { "en": "Email me", "es": "Envíenme un correo" },
+    "emailMeText": { "en": "Want us to email you? Leave your email and we'll send you a short note.", "es": "¿Quiere que le escribamos? Deje su correo electrónico y le enviaremos una breve nota." },
+    "waitlistTitle": { "en": "Not available online yet", "es": "Todavía no está disponible en línea" },
+    "waitlistText": { "en": "This service isn't available online yet. Leave your email and we'll let you know.", "es": "Este servicio todavía no está disponible en línea. Deje su correo electrónico y le avisaremos." },
+    "thanksTitle": { "en": "Thank you", "es": "Gracias" },
+    "thanksText": { "en": "We have your email. We'll be in touch within 3 business days.", "es": "Recibimos su correo electrónico. Nos comunicaremos con usted dentro de 3 días hábiles." },
+    "unsureText": { "en": "No problem. Leave your contact details and our team will help you find the right service.", "es": "No hay problema. Deje sus datos de contacto y nuestro equipo le ayudará a encontrar el servicio adecuado." },
+
+    "disclosuresTitle": { "en": "{service} - Review Disclosures", "es": "{service} - Revisar la información" },
+    "disclosuresError": { "en": "Please check every box to continue.", "es": "Por favor marque todas las casillas para continuar." },
+    "acknowledge": { "en": "Acknowledgment checkbox", "es": "Casilla de confirmación" },
+
+    "payTitle": { "en": "Review & pay", "es": "Revisar y pagar" },
+    "payService": { "en": "Service", "es": "Servicio" },
+    "payPrice": { "en": "Price", "es": "Precio" },
+    "payFees": { "en": "Government filing fees are not included.", "es": "Las tarifas gubernamentales de presentación no están incluidas." },
+    "payAfterHeading": { "en": "What happens after payment", "es": "Qué pasa después del pago" },
+    "payAfter": { "en": "We'll email you a secure questionnaire link within 3 business days. After you complete it, our team prepares your forms for review.", "es": "Le enviaremos por correo electrónico un enlace a un cuestionario seguro dentro de 3 días hábiles. Después de que lo complete, nuestro equipo prepara sus formularios para revisión." },
+    "payButton": { "en": "Continue to secure payment", "es": "Continuar al pago seguro" },
+    "payNote": { "en": "You'll pay on Stripe's secure page. We never see your card number.", "es": "Pagará en la página segura de Stripe. Nunca vemos el número de su tarjeta." },
+    "resumeBad": { "en": "This link is missing some details. Please contact support@uspathway.org and we'll send you a new one.", "es": "A este enlace le faltan algunos datos. Escriba a support@uspathway.org y le enviaremos uno nuevo." }
+  },
+
+  "answerLabels": {
+    "yes": { "en": "Yes", "es": "Sí" },
+    "no": { "en": "No", "es": "No" },
+    "not_sure": { "en": "Not sure", "es": "No estoy seguro(a)" }
+  },
+
+  "sections": {
+    "start": { "en": "Getting started", "es": "Comenzar" },
+    "first_check": { "en": "First check", "es": "Primera revisión" },
+    "relationship": { "en": "Relationship", "es": "Relación" },
+    "history": { "en": "Travel & history", "es": "Viajes e historial" },
+    "status": { "en": "Green card status", "es": "Estatus de residencia" },
+    "basis": { "en": "Eligibility", "es": "Elegibilidad" },
+    "card": { "en": "Your green card", "es": "Su green card" },
+    "marriage": { "en": "Marriage", "es": "Matrimonio" },
+    "criminal": { "en": "Criminal history", "es": "Antecedentes penales" },
+    "sponsor": { "en": "Financial sponsor", "es": "Patrocinador financiero" },
+    "contact": { "en": "Contact", "es": "Contacto" },
+    "result": { "en": "Result", "es": "Resultado" },
+    "disclosures": { "en": "Disclosures", "es": "Información importante" },
+    "payment": { "en": "Payment", "es": "Pago" }
+  },
+
+  "people": {
+    "applicant": { "en": "the person applying", "es": "la persona que solicita" },
+    "fiance": { "en": "the fiancé(e)", "es": "el/la prometido(a)" }
+  },
+
+  "services": {
+    "aos": {
+      "name": { "en": "Adjustment of Status", "es": "Ajuste de Estatus" },
+      "fullName": { "en": "Adjustment of Status – green card (I-485)", "es": "Ajuste de Estatus – green card (I-485)" },
+      "person": "applicant",
+      "blocks": ["A", "B", "C", "CH", "SP"]
+    },
+    "n400": {
+      "name": { "en": "U.S. Citizenship / Naturalization", "es": "Ciudadanía / Naturalización" },
+      "fullName": { "en": "U.S. Citizenship / Naturalization (N-400)", "es": "Ciudadanía estadounidense / Naturalización (N-400)" },
+      "person": "applicant",
+      "blocks": ["N", "CH"]
+    },
+    "i90": {
+      "name": { "en": "Green Card Renewal / Replacement", "es": "Renovación / Reemplazo de Green Card" },
+      "fullName": { "en": "Green Card Renewal / Replacement (I-90)", "es": "Renovación / Reemplazo de Green Card (I-90)" },
+      "person": "applicant",
+      "blocks": ["G", "CH"]
+    },
+    "i751": {
+      "name": { "en": "Removal of Conditions", "es": "Remoción de Condiciones" },
+      "fullName": { "en": "Removal of Conditions on a 2-year green card (I-751)", "es": "Remoción de Condiciones de una green card de 2 años (I-751)" },
+      "person": "applicant",
+      "blocks": ["R", "CH"]
+    },
+    "k1": {
+      "name": { "en": "Fiancé(e) Visa", "es": "Visa de Prometido(a)" },
+      "fullName": { "en": "Fiancé(e) Visa (K-1)", "es": "Visa de Prometido(a) (K-1)" },
+      "person": "fiance",
+      "blocks": ["K", "CH", "SP"],
+      "sponsorFields": true
+    }
+  },
+
+  "blocks": {
+    "A": { "start": "A1" },
+    "B": { "start": "B1" },
+    "C": { "start": "C1" },
+    "N": { "start": "N1" },
+    "G": { "start": "G1" },
+    "R": { "start": "R1" },
+    "K": { "start": "K1" },
+    "CH": { "start": "CH1" },
+    "SP": { "start": "SP1" }
+  },
+
+  "questions": {
+    "S1": {
+      "section": "start",
+      "text": { "en": "Which service are you seeking help with?", "es": "¿Con qué servicio necesita ayuda?" },
+      "answers": [
+        { "id": "aos", "service": "aos", "label": { "en": "Adjustment of Status – green card (I-485)", "es": "Ajuste de Estatus – green card (I-485)" } },
+        { "id": "n400", "service": "n400", "label": { "en": "U.S. Citizenship / Naturalization (N-400)", "es": "Ciudadanía estadounidense / Naturalización (N-400)" } },
+        { "id": "i90", "service": "i90", "label": { "en": "Green Card Renewal / Replacement (I-90)", "es": "Renovación / Reemplazo de Green Card (I-90)" } },
+        { "id": "i751", "service": "i751", "label": { "en": "Removal of Conditions on a 2-year green card (I-751)", "es": "Remoción de Condiciones de una green card de 2 años (I-751)" } },
+        { "id": "k1", "service": "k1", "label": { "en": "Fiancé(e) Visa (K-1)", "es": "Visa de Prometido(a) (K-1)" } },
+        { "id": "unsure", "service": "unsure", "flag": "service_unsure", "label": { "en": "I'm not sure", "es": "No estoy seguro(a)" } }
+      ]
+    },
+
+    "A1": {
+      "section": "first_check", "next": "A2",
+      "text": { "en": "Is the person applying currently inside the United States?", "es": "¿La persona que solicita está actualmente dentro de los Estados Unidos?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "aos_outside" } ]
+    },
+    "A2": {
+      "section": "first_check", "next": "A3",
+      "text": { "en": "Did the person applying enter the United States lawfully (for example, with a visa or inspected at a port of entry)?", "es": "¿La persona que solicita entró a los Estados Unidos de forma legal (por ejemplo, con una visa o con inspección en un puerto de entrada)?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "aos_entry" }, { "id": "not_sure", "flag": "entry_unsure" } ]
+    },
+    "A3": {
+      "section": "first_check", "next": "END",
+      "text": { "en": "Has the person applying ever been ordered removed, deported, or excluded from the United States?", "es": "¿Alguna vez se ordenó la remoción, deportación o exclusión de la persona que solicita de los Estados Unidos?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "aos_removal" }, { "id": "not_sure", "flag": "removal_unsure" } ]
+    },
+
+    "B1": {
+      "section": "relationship",
+      "text": { "en": "What is the person applying's relationship to the U.S. citizen petitioner?", "es": "¿Cuál es la relación de la persona que solicita con el peticionario ciudadano estadounidense?" },
+      "answers": [
+        { "id": "spouse", "next": "B2", "label": { "en": "Spouse", "es": "Cónyuge" } },
+        { "id": "parent", "next": "B4", "label": { "en": "Parent", "es": "Padre o madre" } },
+        { "id": "child", "next": "B5", "label": { "en": "Unmarried son or daughter", "es": "Hijo o hija soltero(a)" } },
+        { "id": "other", "stop": "aos_relationship", "label": { "en": "Other", "es": "Otra" } }
+      ]
+    },
+    "B2": {
+      "section": "relationship", "next": "B3",
+      "text": { "en": "Is the person applying legally married to the U.S. citizen petitioner?", "es": "¿La persona que solicita está legalmente casada con el peticionario ciudadano estadounidense?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "aos_marriage" }, { "id": "not_sure" } ]
+    },
+    "B3": {
+      "section": "relationship", "next": "END",
+      "text": { "en": "Did the marriage happen after the person applying's most recent entry into the U.S.?", "es": "¿El matrimonio ocurrió después de la entrada más reciente de la persona que solicita a los EE. UU.?" },
+      "answers": [ { "id": "yes" }, { "id": "no" }, { "id": "not_sure", "flag": "marriage_after_entry" } ]
+    },
+    "B4": {
+      "section": "relationship", "next": "END",
+      "text": { "en": "Is the U.S. citizen child at least 21 years old?", "es": "¿El hijo o hija ciudadano(a) estadounidense tiene al menos 21 años?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "aos_child_age" }, { "id": "not_sure" } ]
+    },
+    "B5": {
+      "section": "relationship", "next": "END",
+      "text": { "en": "Is the person applying currently married?", "es": "¿La persona que solicita está casada actualmente?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "aos_married_child" }, { "id": "not_sure" } ]
+    },
+
+    "C1": {
+      "section": "history",
+      "text": { "en": "Has the person applying left the U.S. since their most recent entry?", "es": "¿La persona que solicita ha salido de los EE. UU. desde su entrada más reciente?" },
+      "answers": [ { "id": "no", "next": "C3" }, { "id": "yes", "next": "C2" }, { "id": "not_sure", "next": "C3" } ]
+    },
+    "C2": {
+      "section": "history", "next": "C3",
+      "text": { "en": "What was the longest time outside the U.S. on any of those trips?", "es": "¿Cuál fue el tiempo más largo fuera de los EE. UU. en cualquiera de esos viajes?" },
+      "answers": [
+        { "id": "lt90", "label": { "en": "Less than 90 days", "es": "Menos de 90 días" } },
+        { "id": "90to6m", "flag": "longest_trip", "flagValue": "90 days to 6 months", "label": { "en": "90 days to 6 months", "es": "De 90 días a 6 meses" } },
+        { "id": "gt6m", "flag": "longest_trip", "flagValue": "more than 6 months", "label": { "en": "More than 6 months", "es": "Más de 6 meses" } },
+        { "id": "not_sure", "flag": "longest_trip", "flagValue": "not sure" }
+      ]
+    },
+    "C3": {
+      "section": "history",
+      "text": { "en": "Does the person applying currently have valid immigration status in the U.S.?", "es": "¿La persona que solicita tiene actualmente un estatus migratorio válido en los EE. UU.?" },
+      "answers": [ { "id": "yes", "next": "C5" }, { "id": "no", "next": "C4" }, { "id": "not_sure", "next": "C4", "flag": null } ]
+    },
+    "C4": {
+      "section": "history", "next": "C5",
+      "text": { "en": "How long ago did the status expire?", "es": "¿Hace cuánto tiempo venció el estatus?" },
+      "answers": [
+        { "id": "lt6m", "flag": "status_expired", "flagValue": "less than 6 months", "label": { "en": "Less than 6 months ago", "es": "Hace menos de 6 meses" } },
+        { "id": "6to12m", "flag": "status_expired", "flagValue": "6–12 months", "label": { "en": "6 to 12 months ago", "es": "Hace 6 a 12 meses" } },
+        { "id": "gt1y", "flag": "status_expired", "flagValue": "more than 1 year", "label": { "en": "More than 1 year ago", "es": "Hace más de 1 año" } },
+        { "id": "not_sure", "flag": "status_expired", "flagValue": "not sure" }
+      ]
+    },
+    "C5": {
+      "section": "history",
+      "text": { "en": "Has the person applying ever filed an immigration application or petition before?", "es": "¿La persona que solicita ha presentado antes alguna solicitud o petición de inmigración?" },
+      "answers": [ { "id": "no", "next": "C7" }, { "id": "yes", "next": "C6" }, { "id": "not_sure", "next": "C7" } ]
+    },
+    "C6": {
+      "section": "history", "next": "C7",
+      "text": { "en": "What was the outcome of the most recent one?", "es": "¿Cuál fue el resultado de la más reciente?" },
+      "answers": [
+        { "id": "approved", "label": { "en": "Approved", "es": "Aprobada" } },
+        { "id": "withdrawn", "label": { "en": "Withdrawn", "es": "Retirada" } },
+        { "id": "denied_docs", "flag": "prior_application", "flagValue": "denied – missing documents or abandoned", "label": { "en": "Denied (missing documents or abandoned)", "es": "Negada (faltaban documentos o se abandonó)" } },
+        { "id": "denied_other", "flag": "prior_application", "flagValue": "denied – other reason", "label": { "en": "Denied (other reason)", "es": "Negada (otra razón)" } },
+        { "id": "pending", "flag": "prior_application", "flagValue": "still pending", "label": { "en": "Still pending", "es": "Todavía pendiente" } },
+        { "id": "not_sure", "flag": "prior_application", "flagValue": "not sure" }
+      ]
+    },
+    "C7": {
+      "section": "history", "next": "END",
+      "text": { "en": "Has the person applying ever been in immigration court or removal proceedings?", "es": "¿La persona que solicita ha estado alguna vez en una corte de inmigración o en un proceso de deportación?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "aos_court" }, { "id": "not_sure", "flag": "court_unsure" } ]
+    },
+
+    "N1": {
+      "section": "status", "next": "N2",
+      "text": { "en": "Is the person applying a lawful permanent resident (green card holder)?", "es": "¿La persona que solicita es residente permanente legal (tiene green card)?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "not_lpr" } ]
+    },
+    "N2": {
+      "section": "status", "next": "N3",
+      "text": { "en": "Does the person applying have their green card in their possession?", "es": "¿La persona que solicita tiene su green card en su poder?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "flag": "no_green_card" } ]
+    },
+    "N3": {
+      "section": "status",
+      "text": { "en": "Is either of the person applying's parents a U.S. citizen?", "es": "¿Alguno de los padres de la persona que solicita es ciudadano estadounidense?" },
+      "answers": [ { "id": "no", "next": "N5" }, { "id": "yes", "next": "N4" } ]
+    },
+    "N4": {
+      "section": "status", "next": "N5",
+      "text": { "en": "Did that parent become a U.S. citizen before the person applying turned 18, while the applicant had a green card?", "es": "¿Ese padre o madre se hizo ciudadano(a) estadounidense antes de que la persona que solicita cumpliera 18 años, mientras tenía green card?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "derived_citizenship" }, { "id": "not_sure" } ]
+    },
+    "N5": {
+      "section": "basis",
+      "text": { "en": "What is the basis for the citizenship application?", "es": "¿Cuál es la base de la solicitud de ciudadanía?" },
+      "answers": [
+        { "id": "five_year", "next": "N6", "label": { "en": "Green card for 5+ years", "es": "Green card por 5 años o más" } },
+        { "id": "three_year", "next": "N9", "label": { "en": "Green card for 3+ years and married to a U.S. citizen", "es": "Green card por 3 años o más y casado(a) con un ciudadano estadounidense" } },
+        { "id": "military", "next": "N12", "flag": "basis_military", "label": { "en": "U.S. military service", "es": "Servicio militar en EE. UU." } },
+        { "id": "national", "next": "N15", "flag": "basis_national", "label": { "en": "U.S. national (American Samoa or Swains Island)", "es": "Nacional de EE. UU. (Samoa Americana o Isla Swains)" } },
+        { "id": "other", "next": "N17", "flag": "basis_other", "label": { "en": "Other", "es": "Otra" } }
+      ]
+    },
+    "N6": {
+      "section": "basis", "next": "N7",
+      "text": { "en": "Has the person applying had their green card for at least 5 years?", "es": "¿La persona que solicita ha tenido su green card por al menos 5 años?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "lpr_time" }, { "id": "not_sure" } ]
+    },
+    "N7": {
+      "section": "basis", "next": "N8",
+      "text": { "en": "In the last 5 years, has the person applying been physically in the U.S. for at least 30 months (2½ years) in total?", "es": "En los últimos 5 años, ¿la persona que solicita ha estado físicamente en los EE. UU. por al menos 30 meses (2 años y medio) en total?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "physical_presence" }, { "id": "not_sure" } ]
+    },
+    "N8": {
+      "section": "history",
+      "text": { "en": "Since getting the green card, has the person applying taken any trip outside the U.S. longer than 6 months?", "es": "Desde que obtuvo la green card, ¿la persona que solicita ha hecho algún viaje fuera de los EE. UU. de más de 6 meses?" },
+      "answers": [ { "id": "no", "next": "N17" }, { "id": "yes", "next": "N8b" } ]
+    },
+    "N8b": {
+      "section": "history", "next": "N17",
+      "text": { "en": "Was any trip longer than 1 year?", "es": "¿Algún viaje duró más de 1 año?" },
+      "answers": [
+        { "id": "no", "flag": "long_trip", "flagValue": "6 months to 1 year" },
+        { "id": "yes", "flag": "long_trip", "flagValue": "more than 1 year" }
+      ]
+    },
+    "N9": {
+      "section": "basis", "next": "N10",
+      "text": { "en": "Has the person applying had their green card for at least 3 years?", "es": "¿La persona que solicita ha tenido su green card por al menos 3 años?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "lpr_time" } ]
+    },
+    "N10": {
+      "section": "basis", "next": "N11",
+      "text": { "en": "For the past 3 years, has the person applying been married to and living with the same U.S. citizen spouse?", "es": "Durante los últimos 3 años, ¿la persona que solicita ha estado casada y viviendo con el mismo cónyuge ciudadano estadounidense?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "three_year_marriage" } ]
+    },
+    "N11": {
+      "section": "basis", "next": "N11b",
+      "text": { "en": "Has the spouse been a U.S. citizen for that whole time?", "es": "¿El cónyuge ha sido ciudadano estadounidense durante todo ese tiempo?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "flag": "spouse_citizen_time" }, { "id": "not_sure", "flag": "spouse_citizen_time" } ]
+    },
+    "N11b": {
+      "section": "basis", "next": "N8",
+      "text": { "en": "In the last 3 years, has the person applying been physically in the U.S. for at least 18 months in total?", "es": "En los últimos 3 años, ¿la persona que solicita ha estado físicamente en los EE. UU. por al menos 18 meses en total?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "physical_presence" }, { "id": "not_sure" } ]
+    },
+    "N12": {
+      "section": "basis", "next": "N13",
+      "text": { "en": "Has the person applying completed qualifying service in the U.S. Armed Forces?", "es": "¿La persona que solicita ha completado un servicio que califica en las Fuerzas Armadas de EE. UU.?" },
+      "answers": [ { "id": "yes" }, { "id": "no" } ]
+    },
+    "N13": {
+      "section": "basis", "next": "N14",
+      "text": { "en": "Was the service honorable?", "es": "¿El servicio fue honorable?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "not_honorable" } ]
+    },
+    "N14": {
+      "section": "basis", "next": "N17",
+      "text": { "en": "Is the person applying serving now, or were they separated within the last 6 months?", "es": "¿La persona que solicita está sirviendo ahora, o se separó del servicio en los últimos 6 meses?" },
+      "answers": [ { "id": "yes" }, { "id": "no" } ]
+    },
+    "N15": {
+      "section": "basis", "next": "N16",
+      "text": { "en": "Was the person applying born in American Samoa or Swains Island?", "es": "¿La persona que solicita nació en Samoa Americana o en la Isla Swains?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "us_national" } ]
+    },
+    "N16": {
+      "section": "basis", "next": "N17",
+      "text": { "en": "Has the person applying lived in a U.S. state for at least 3 months?", "es": "¿La persona que solicita ha vivido en un estado de EE. UU. por al menos 3 meses?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "state_residency" } ]
+    },
+    "N17": {
+      "section": "basis", "next": "END",
+      "text": { "en": "Has the person applying lived in their current U.S. state or USCIS district for at least 3 months?", "es": "¿La persona que solicita ha vivido en su estado actual de EE. UU. o distrito de USCIS por al menos 3 meses?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "local_residency" } ]
+    },
+
+    "G1": {
+      "section": "card", "next": "G2",
+      "text": { "en": "Is the person applying a lawful permanent resident with a green card?", "es": "¿La persona que solicita es residente permanente legal con green card?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "i90_not_lpr" } ]
+    },
+    "G2": {
+      "section": "card", "next": "G3",
+      "text": { "en": "Is it a 10-year green card (not a 2-year conditional card)?", "es": "¿Es una green card de 10 años (no una tarjeta condicional de 2 años)?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "next": "GOTO_I751" }, { "id": "not_sure" } ]
+    },
+    "GOTO_I751": {
+      "section": "card", "type": "goto",
+      "text": { "en": "This looks like a better fit: Removal of Conditions (I-751). Continue?", "es": "Este servicio parece más adecuado: Remoción de Condiciones (I-751). ¿Desea continuar?" },
+      "help": { "en": "A 2-year card can't be renewed with this application. Removal of Conditions may be the right service.", "es": "Una tarjeta de 2 años no se puede renovar con esta solicitud. Remoción de Condiciones podría ser el servicio adecuado." },
+      "answers": [
+        { "id": "yes", "switchTo": "i751", "label": { "en": "Yes, continue with Removal of Conditions", "es": "Sí, continuar con Remoción de Condiciones" } },
+        { "id": "no", "back": true, "label": { "en": "No, go back", "es": "No, regresar" } }
+      ]
+    },
+    "G3": {
+      "section": "card",
+      "text": { "en": "Why does the person applying need a new card?", "es": "¿Por qué la persona que solicita necesita una tarjeta nueva?" },
+      "answers": [
+        { "id": "expired", "next": "G4", "label": { "en": "Expired or expires within 6 months", "es": "Venció o vence dentro de 6 meses" } },
+        { "id": "lost", "next": "G5", "label": { "en": "Lost, stolen, or destroyed", "es": "Se perdió, se la robaron o se destruyó" } },
+        { "id": "damaged", "next": "G4", "label": { "en": "Damaged", "es": "Está dañada" } },
+        { "id": "info", "next": "G4", "flag": "card_info_change", "label": { "en": "Information on the card is wrong or has changed", "es": "La información de la tarjeta está mal o cambió" } },
+        { "id": "later", "stop": "i90_too_early", "label": { "en": "Expires in more than 6 months", "es": "Vence en más de 6 meses" } }
+      ]
+    },
+    "G4": {
+      "section": "card",
+      "text": { "en": "Does the person applying have the green card, or a copy of it?", "es": "¿La persona que solicita tiene la green card, o una copia de ella?" },
+      "answers": [ { "id": "yes", "next": "END" }, { "id": "no", "next": "G5" } ]
+    },
+    "G5": {
+      "section": "card", "next": "END",
+      "text": { "en": "Does the person applying have a copy of the card, or know their A-Number (8 or 9 digits)?", "es": "¿La persona que solicita tiene una copia de la tarjeta, o sabe su número A (A-Number, de 8 o 9 dígitos)?" },
+      "help": { "en": "Just yes or no. Please don't type the number here.", "es": "Solo sí o no. Por favor no escriba el número aquí." },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "no_a_number" } ]
+    },
+
+    "R1": {
+      "section": "card", "next": "R2",
+      "text": { "en": "Does the person applying have a 2-year conditional green card obtained through marriage to a U.S. citizen or permanent resident?", "es": "¿La persona que solicita tiene una green card condicional de 2 años obtenida por matrimonio con un ciudadano estadounidense o residente permanente?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "not_conditional" }, { "id": "not_sure" } ]
+    },
+    "R2": {
+      "section": "card", "next": "R3",
+      "text": { "en": "When does the 2-year card expire?", "es": "¿Cuándo vence la tarjeta de 2 años?" },
+      "answers": [
+        { "id": "within90", "label": { "en": "Within the next 90 days", "es": "Dentro de los próximos 90 días" } },
+        { "id": "later", "stop": "i751_too_early", "label": { "en": "More than 90 days from now", "es": "En más de 90 días" } },
+        { "id": "expired", "flag": "i751_late", "label": { "en": "It has already expired", "es": "Ya venció" } },
+        { "id": "not_sure" }
+      ]
+    },
+    "R3": {
+      "section": "marriage",
+      "text": { "en": "Who is this application for?", "es": "¿Para quién es esta solicitud?" },
+      "answers": [
+        { "id": "spouse", "next": "R4", "label": { "en": "The spouse (with or without children on the same card)", "es": "El/la cónyuge (con o sin hijos en la misma tarjeta)" } },
+        { "id": "child", "next": "R10", "label": { "en": "A child filing separately", "es": "Un hijo o hija que presenta por separado" } }
+      ]
+    },
+    "R4": {
+      "section": "marriage",
+      "text": { "en": "What is the current marriage status?", "es": "¿Cuál es el estado actual del matrimonio?" },
+      "answers": [
+        { "id": "married", "next": "R5", "label": { "en": "Still married", "es": "Todavía casados" } },
+        { "id": "divorced", "next": "R6", "label": { "en": "Divorced or annulled", "es": "Divorciados o matrimonio anulado" } },
+        { "id": "separated", "stop": "divorce_pending", "label": { "en": "Separated, divorce not final", "es": "Separados, el divorcio no es final" } },
+        { "id": "widowed", "next": "R7", "flag": "waiver_widow", "label": { "en": "Spouse passed away", "es": "El/la cónyuge falleció" } }
+      ]
+    },
+    "R5": {
+      "section": "marriage", "next": "END",
+      "text": { "en": "Do you have documents showing a real (good-faith) marriage from when the card was received until now? (for example, joint lease, bank accounts, children's birth certificates)", "es": "¿Tiene documentos que demuestren un matrimonio real (de buena fe) desde que recibió la tarjeta hasta ahora? (por ejemplo, contrato de renta conjunto, cuentas bancarias, actas de nacimiento de los hijos)" },
+      "answers": [ { "id": "yes" }, { "id": "no", "flag": "good_faith_docs" }, { "id": "not_sure", "flag": "good_faith_docs" } ]
+    },
+    "R6": {
+      "section": "marriage", "next": "R7",
+      "text": { "en": "Do you have documents showing you entered the marriage in good faith, even though it ended?", "es": "¿Tiene documentos que demuestren que se casó de buena fe, aunque el matrimonio terminó?" },
+      "answers": [ { "id": "yes", "flag": "waiver_divorce" }, { "id": "no", "stop": "attorney_needed" } ]
+    },
+    "R7": {
+      "section": "marriage", "next": "R8",
+      "text": { "en": "Would losing status and leaving the U.S. cause extreme hardship?", "es": "¿Perder el estatus y salir de los EE. UU. causaría un sufrimiento extremo?" },
+      "answers": [ { "id": "yes", "flag": "waiver_hardship" }, { "id": "no" } ]
+    },
+    "R8": {
+      "section": "marriage", "next": "END",
+      "text": { "en": "During the marriage, was the person applying subjected to battery or extreme cruelty by the spouse?", "es": "Durante el matrimonio, ¿la persona que solicita sufrió agresión física o crueldad extrema por parte del cónyuge?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "abuse_waiver" } ]
+    },
+    "R10": {
+      "section": "marriage", "next": "R11",
+      "text": { "en": "Do you have documents showing the child lived continuously with the conditional-resident parent, and proving the parent-child relationship?", "es": "¿Tiene documentos que demuestren que el hijo o hija vivió continuamente con el padre o la madre residente condicional, y que prueben la relación entre ellos?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "flag": "child_docs" } ]
+    },
+    "R11": {
+      "section": "marriage", "next": "END",
+      "text": { "en": "Was the child subjected to battery or extreme cruelty by the parent's spouse or by the conditional-resident parent?", "es": "¿El hijo o hija sufrió agresión física o crueldad extrema por parte del cónyuge del padre o la madre, o del padre o la madre residente condicional?" },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "abuse_waiver" } ]
+    },
+
+    "K1": {
+      "section": "relationship", "next": "K2",
+      "text": { "en": "Are you the U.S. citizen sponsor or the fiancé(e)?", "es": "¿Usted es el patrocinador ciudadano estadounidense o el/la prometido(a)?" },
+      "answers": [
+        { "id": "sponsor", "label": { "en": "The U.S. citizen sponsor", "es": "El patrocinador ciudadano estadounidense" } },
+        { "id": "fiance", "label": { "en": "The fiancé(e)", "es": "El/la prometido(a)" } }
+      ]
+    },
+    "K2": {
+      "section": "relationship", "next": "K3",
+      "text": { "en": "Is the sponsor a U.S. citizen, or will they be one before filing?", "es": "¿El patrocinador es ciudadano estadounidense, o lo será antes de presentar la solicitud?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "k1_sponsor_not_usc" }, { "id": "not_sure" } ]
+    },
+    "K3": {
+      "section": "relationship", "next": "K4",
+      "text": { "en": "How would you describe the relationship?", "es": "¿Cómo describiría la relación?" },
+      "answers": [
+        { "id": "engaged", "label": { "en": "Engaged", "es": "Comprometidos" } },
+        { "id": "dating", "flag": "k1_dating", "label": { "en": "Dating", "es": "Novios" } },
+        { "id": "married", "stop": "k1_married_cr1", "label": { "en": "Married", "es": "Casados" } }
+      ]
+    },
+    "K4": {
+      "section": "relationship", "next": "K5",
+      "text": { "en": "Do both of you plan to marry within 90 days after the fiancé(e) arrives in the U.S.?", "es": "¿Ambos planean casarse dentro de los 90 días después de que el/la prometido(a) llegue a los EE. UU.?" },
+      "answers": [ { "id": "yes" }, { "id": "no", "stop": "k1_intent" }, { "id": "not_sure" } ]
+    },
+    "K5": {
+      "section": "relationship",
+      "text": { "en": "Have you met in person within the last 2 years?", "es": "¿Se han conocido en persona en los últimos 2 años?" },
+      "answers": [ { "id": "yes", "next": "K7" }, { "id": "no", "next": "K6" } ]
+    },
+    "K6": {
+      "section": "relationship", "next": "K7",
+      "text": { "en": "Do you plan to meet in person within the next 90 days?", "es": "¿Planean conocerse en persona en los próximos 90 días?" },
+      "answers": [ { "id": "yes", "flag": "k1_not_met_yet" }, { "id": "no", "stop": "k1_not_met" } ]
+    },
+    "K7": {
+      "section": "relationship", "next": "K8",
+      "text": { "en": "How soon do you want to file?", "es": "¿Qué tan pronto quiere presentar la solicitud?" },
+      "answers": [
+        { "id": "lt3m", "label": { "en": "In the next 3 months", "es": "En los próximos 3 meses" } },
+        { "id": "3to6m", "label": { "en": "In 3–6 months", "es": "En 3 a 6 meses" } },
+        { "id": "6to12m", "label": { "en": "In 6–12 months", "es": "En 6 a 12 meses" } },
+        { "id": "gt12m", "label": { "en": "In 12 months or later", "es": "En 12 meses o más" } }
+      ]
+    },
+    "K8": {
+      "section": "relationship", "next": "K9", "type": "country",
+      "text": { "en": "What country is the fiancé(e) a citizen of?", "es": "¿De qué país es ciudadano(a) el/la prometido(a)?" },
+      "answers": []
+    },
+    "K9": {
+      "section": "criminal", "next": "END",
+      "text": { "en": "Has the sponsor ever been arrested, charged, or convicted of domestic violence, sexual assault, child abuse, or any crime involving a minor (such as assault or kidnapping)? U.S. law requires us to ask.", "es": "¿El patrocinador ha sido alguna vez arrestado, acusado o condenado por violencia doméstica, agresión sexual, abuso infantil o cualquier delito que involucre a un menor (como agresión o secuestro)? La ley de EE. UU. nos obliga a preguntarlo." },
+      "answers": [ { "id": "no" }, { "id": "yes", "stop": "k1_sponsor_imbra" }, { "id": "not_sure", "flag": "criminal_unsure" } ]
+    },
+
+    "CH1": {
+      "section": "criminal",
+      "text": { "en": "Has {person} ever been arrested, cited, charged, or convicted of a crime in the U.S. or any other country?", "es": "¿{person} ha sido alguna vez arrestado(a), citado(a), acusado(a) o condenado(a) por un delito en los EE. UU. o en cualquier otro país?" },
+      "answers": [ { "id": "no", "next": "END" }, { "id": "yes", "next": "CH2" }, { "id": "not_sure", "next": "END", "flag": "criminal_unsure" } ]
+    },
+    "CH2": {
+      "section": "criminal", "next": "END",
+      "text": { "en": "What best describes the outcome? If more than one, choose the most serious.", "es": "¿Qué describe mejor el resultado? Si hubo más de uno, elija el más grave." },
+      "answers": [
+        { "id": "no_charges", "flag": "criminal_no_charges", "label": { "en": "No charges were filed", "es": "No se presentaron cargos" } },
+        { "id": "dismissed", "flag": "criminal_dismissed", "label": { "en": "Charges were dismissed or cleared", "es": "Los cargos fueron retirados o anulados" } },
+        { "id": "convicted", "next": "CH3", "label": { "en": "Convicted", "es": "Fue condenado(a)" } },
+        { "id": "pending", "stop": "criminal_pending", "label": { "en": "Case is still pending", "es": "El caso todavía está pendiente" } },
+        { "id": "not_sure", "flag": "criminal_unsure" }
+      ]
+    },
+    "CH3": {
+      "section": "criminal", "next": "END",
+      "text": { "en": "Was any conviction for a violent crime, a drug offense, domestic violence, a sex offense, human trafficking, or a crime involving a child?", "es": "¿Alguna condena fue por un delito violento, un delito de drogas, violencia doméstica, un delito sexual, trata de personas o un delito que involucre a un menor?" },
+      "answers": [ { "id": "no", "flag": "criminal_conviction" }, { "id": "yes", "stop": "criminal_serious" }, { "id": "not_sure", "flag": "criminal_unsure" } ]
+    },
+
+    "SP1": {
+      "section": "sponsor",
+      "text": { "en": "What is the sponsor (the U.S. citizen petitioner)'s approximate yearly income?", "es": "¿Cuál es el ingreso anual aproximado del patrocinador (el peticionario ciudadano estadounidense)?" },
+      "answers": [
+        { "id": "low", "next": "SP3", "label": { "en": "Below {cutoff}", "es": "Menos de {cutoff}" } },
+        { "id": "mid", "next": "SP2", "label": { "en": "{cutoff}–$50,000", "es": "{cutoff} a $50,000" } },
+        { "id": "high", "next": "SP2", "label": { "en": "$50,000 or more", "es": "$50,000 o más" } },
+        { "id": "not_sure", "next": "SP3", "flag": null }
+      ]
+    },
+    "SP2": {
+      "section": "sponsor", "next": "END",
+      "text": { "en": "How many people are in the sponsor's household, including the person applying?", "es": "¿Cuántas personas hay en el hogar del patrocinador, incluyendo a la persona que solicita?" },
+      "answers": [
+        { "id": "1to2", "label": { "en": "1–2", "es": "1 a 2" } },
+        { "id": "3to4", "label": { "en": "3–4", "es": "3 a 4" } },
+        { "id": "5plus", "label": { "en": "5 or more", "es": "5 o más" } },
+        { "id": "not_sure", "flag": null }
+      ]
+    },
+    "SP3": {
+      "section": "sponsor", "next": "SP2",
+      "text": { "en": "If needed, would a friend or relative agree to be a joint financial sponsor?", "es": "Si fuera necesario, ¿un amigo o familiar aceptaría ser patrocinador financiero conjunto?" },
+      "answers": [
+        { "id": "yes", "flag": "joint_sponsor" },
+        { "id": "no", "flag": "joint_sponsor", "byService": { "k1": { "stop": "sponsor_income", "flag": null } } },
+        { "id": "not_sure", "flag": "joint_sponsor" }
+      ]
+    }
+  },
+
+  "flags": {
+    "not_sure": { "category": "Other", "label": "Answered 'Not sure' to: {question}" },
+    "service_unsure": { "category": "Other", "label": "Didn't know which service they need" },
+    "criminal_unsure": { "category": "Criminal", "label": "Not sure about criminal history" },
+    "criminal_no_charges": { "category": "Criminal", "label": "Arrested or cited – no charges filed" },
+    "criminal_dismissed": { "category": "Criminal", "label": "Charges dismissed or cleared" },
+    "criminal_conviction": { "category": "Criminal", "label": "Conviction – not violent, drug, DV, sex or child-related" },
+    "entry_unsure": { "category": "Immigration history", "label": "Not sure the entry was lawful" },
+    "removal_unsure": { "category": "Immigration history", "label": "Not sure about a past removal order" },
+    "court_unsure": { "category": "Immigration history", "label": "Not sure about immigration court" },
+    "status_expired": { "category": "Immigration history", "label": "Status expired" },
+    "prior_application": { "category": "Immigration history", "label": "Earlier application denied or still pending" },
+    "marriage_after_entry": { "category": "Relationship", "label": "Not sure whether the marriage came before or after the last entry" },
+    "longest_trip": { "category": "Travel", "label": "AOS – trip abroad since last entry" },
+    "long_trip": { "category": "Travel", "label": "N-400 – trip of more than 6 months since getting the green card" },
+    "no_green_card": { "category": "Documents", "label": "Green card not in their possession" },
+    "basis_military": { "category": "Eligibility", "label": "N-400 through military service" },
+    "basis_national": { "category": "Eligibility", "label": "N-400 as a U.S. national" },
+    "basis_other": { "category": "Eligibility", "label": "N-400 – \"Other\" basis" },
+    "spouse_citizen_time": { "category": "Eligibility", "label": "3-year rule – spouse not a citizen the whole time" },
+    "joint_sponsor": { "category": "Financial", "label": "Sponsor income low or unknown and no joint sponsor confirmed" },
+    "card_info_change": { "category": "Documents", "label": "I-90 – card information changed or wrong" },
+    "i751_late": { "category": "Timing", "label": "I-751 – conditional card already expired" },
+    "good_faith_docs": { "category": "Documents", "label": "I-751 – may lack good-faith marriage documents" },
+    "waiver_divorce": { "category": "Eligibility", "label": "I-751 – divorced or annulled; waiver needed" },
+    "waiver_widow": { "category": "Eligibility", "label": "I-751 – spouse died; waiver needed" },
+    "waiver_hardship": { "category": "Eligibility", "label": "I-751 – claims extreme hardship" },
+    "child_docs": { "category": "Documents", "label": "I-751 child – may lack residence or relationship documents" },
+    "k1_dating": { "category": "Relationship", "label": "K-1 – dating, not engaged" },
+    "k1_not_met_yet": { "category": "Eligibility", "label": "K-1 – not met in person in the last 2 years; plans to meet within 90 days" }
+  },
+
+  "stops": {
+    "aos_outside": { "en": "Adjustment of Status can only be prepared for people who are physically inside the United States.", "es": "El Ajuste de Estatus solo se puede preparar para personas que están físicamente dentro de los Estados Unidos." },
+    "aos_entry": { "en": "Adjustment of Status requires a lawful entry into the United States.", "es": "El Ajuste de Estatus requiere una entrada legal a los Estados Unidos." },
+    "aos_removal": { "en": "A past removal or deportation order affects eligibility for Adjustment of Status. Please speak with an immigration attorney.", "es": "Una orden de remoción o deportación anterior afecta la elegibilidad para el Ajuste de Estatus. Por favor hable con un abogado de inmigración." },
+    "aos_court": { "en": "Cases that have been in immigration court need an attorney's help.", "es": "Los casos que han estado en una corte de inmigración necesitan la ayuda de un abogado." },
+    "aos_relationship": { "en": "This case doesn't fit the Adjustment of Status services we offer.", "es": "Este caso no corresponde a los servicios de Ajuste de Estatus que ofrecemos." },
+    "aos_marriage": { "en": "Adjustment of Status based on marriage requires a legally valid marriage.", "es": "El Ajuste de Estatus por matrimonio requiere un matrimonio legalmente válido." },
+    "aos_child_age": { "en": "Adjustment of Status for parents requires the U.S. citizen child to be at least 21 years old.", "es": "El Ajuste de Estatus para padres requiere que el hijo o hija ciudadano(a) estadounidense tenga al menos 21 años." },
+    "aos_married_child": { "en": "Adjustment of Status for married sons and daughters isn't available through this service.", "es": "El Ajuste de Estatus para hijos e hijas casados no está disponible con este servicio." },
+    "derived_citizenship": { "en": "You may already be a U.S. citizen through your parent. This situation needs legal guidance rather than document preparation.", "es": "Es posible que usted ya sea ciudadano(a) estadounidense por medio de su padre o madre. Esta situación necesita orientación legal, no preparación de documentos." },
+    "not_lpr": { "en": "Citizenship (naturalization) requires being a lawful permanent resident (green card holder).", "es": "La ciudadanía (naturalización) requiere ser residente permanente legal (tener green card)." },
+    "lpr_time": { "en": "You must have had your green card long enough before applying: usually 5 years, or 3 years if married to a U.S. citizen.", "es": "Debe haber tenido su green card el tiempo suficiente antes de solicitar: normalmente 5 años, o 3 años si está casado(a) con un ciudadano estadounidense." },
+    "physical_presence": { "en": "You must meet the time-in-the-U.S. requirement before applying for citizenship.", "es": "Debe cumplir con el requisito de tiempo en los EE. UU. antes de solicitar la ciudadanía." },
+    "three_year_marriage": { "en": "The 3-year rule requires being married to and living with the same U.S. citizen spouse for the past 3 years.", "es": "La regla de 3 años requiere haber estado casado(a) y viviendo con el mismo cónyuge ciudadano estadounidense durante los últimos 3 años." },
+    "not_honorable": { "en": "Only honorable military service qualifies for this filing.", "es": "Solo el servicio militar honorable califica para esta solicitud." },
+    "us_national": { "en": "This pathway requires confirmed U.S. national status.", "es": "Esta vía requiere un estatus confirmado de nacional de EE. UU." },
+    "state_residency": { "en": "You must have lived in a U.S. state for at least 3 months before filing.", "es": "Debe haber vivido en un estado de EE. UU. por al menos 3 meses antes de presentar la solicitud." },
+    "local_residency": { "en": "USCIS requires at least 3 months of living in your current state or USCIS district before filing.", "es": "USCIS requiere que haya vivido al menos 3 meses en su estado actual o distrito de USCIS antes de presentar la solicitud." },
+    "i90_too_early": { "en": "Green card renewal is for cards that are expired or expire within 6 months. Please come back when your card is within 6 months of expiring.", "es": "La renovación de green card es para tarjetas vencidas o que vencen dentro de 6 meses. Por favor regrese cuando falten 6 meses o menos para que venza su tarjeta." },
+    "i90_not_lpr": { "en": "This service is only for renewing or replacing an existing green card.", "es": "Este servicio es solo para renovar o reemplazar una green card existente." },
+    "no_a_number": { "en": "Please find your green card, a copy of it, or your A-Number (an 8 or 9 digit number) before continuing. If you can't, please contact an immigration attorney.", "es": "Por favor busque su green card, una copia de ella o su número A (A-Number, un número de 8 o 9 dígitos) antes de continuar. Si no puede, por favor comuníquese con un abogado de inmigración." },
+    "not_conditional": { "en": "Removal of Conditions is only for people with a 2-year conditional green card.", "es": "La Remoción de Condiciones es solo para personas con una green card condicional de 2 años." },
+    "i751_too_early": { "en": "Removal of Conditions is filed in the 90 days before your 2-year card expires. Please come back then.", "es": "La Remoción de Condiciones se presenta en los 90 días antes de que venza su tarjeta de 2 años. Por favor regrese en ese momento." },
+    "divorce_pending": { "en": "Please come back once the divorce is final.", "es": "Por favor regrese cuando el divorcio sea final." },
+    "attorney_needed": { "en": "Your situation needs an immigration attorney's help.", "es": "Su situación necesita la ayuda de un abogado de inmigración." },
+    "abuse_waiver": { "en": "Cases involving abuse or extreme cruelty need an immigration attorney. You may still have options; please reach out to one.", "es": "Los casos que involucran abuso o crueldad extrema necesitan un abogado de inmigración. Es posible que todavía tenga opciones; por favor comuníquese con uno." },
+    "k1_sponsor_not_usc": { "en": "A K-1 fiancé(e) visa can only be filed by a U.S. citizen. A permanent resident can't sponsor a K-1.", "es": "Una visa de prometido(a) K-1 solo la puede presentar un ciudadano estadounidense. Un residente permanente no puede patrocinar una K-1." },
+    "k1_married_cr1": { "en": "Because you're already married, a K-1 isn't the right visa. You may be eligible for a spousal visa (CR-1); an attorney can help.", "es": "Como ya están casados, la K-1 no es la visa adecuada. Es posible que califique para una visa de cónyuge (CR-1); un abogado puede ayudarle." },
+    "k1_intent": { "en": "A K-1 visa requires a clear plan to marry within 90 days of the fiancé(e) arriving in the U.S.", "es": "Una visa K-1 requiere un plan claro de casarse dentro de los 90 días después de que el/la prometido(a) llegue a los EE. UU." },
+    "k1_not_met": { "en": "K-1 applicants must have met in person at least once in the 2 years before filing.", "es": "Los solicitantes de K-1 deben haberse conocido en persona al menos una vez en los 2 años antes de presentar la solicitud." },
+    "k1_sponsor_imbra": { "en": "U.S. law requires extra review when the sponsor has this kind of history. Please contact an immigration attorney.", "es": "La ley de EE. UU. requiere una revisión adicional cuando el patrocinador tiene este tipo de antecedentes. Por favor comuníquese con un abogado de inmigración." },
+    "sponsor_income": { "en": "A K-1 sponsor needs enough income, or a joint sponsor. Please contact an immigration attorney.", "es": "Un patrocinador de K-1 necesita ingresos suficientes o un patrocinador conjunto. Por favor comuníquese con un abogado de inmigración." },
+    "criminal_pending": { "en": "Because a case is still pending, an attorney should review your situation before anything is filed. This doesn't necessarily mean you aren't eligible.", "es": "Como hay un caso todavía pendiente, un abogado debe revisar su situación antes de presentar cualquier cosa. Esto no significa necesariamente que usted no sea elegible." },
+    "criminal_serious": { "en": "Because of this type of conviction, an attorney should review your situation before anything is filed. This doesn't necessarily mean you aren't eligible.", "es": "Por este tipo de condena, un abogado debe revisar su situación antes de presentar cualquier cosa. Esto no significa necesariamente que usted no sea elegible." }
+  },
+
+  "countries": ["AF","AL","DZ","AD","AO","AG","AR","AM","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BT","BO","BA","BW","BR","BN","BG","BF","BI","CV","KH","CM","CA","CF","TD","CL","CN","CO","KM","CG","CD","CR","CI","HR","CU","CY","CZ","DK","DJ","DM","DO","EC","EG","SV","GQ","ER","EE","SZ","ET","FJ","FI","FR","GA","GM","GE","DE","GH","GR","GD","GT","GN","GW","GY","HT","HN","HK","HU","IS","IN","ID","IR","IQ","IE","IL","IT","JM","JP","JO","KZ","KE","KI","XK","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO","MG","MW","MY","MV","ML","MT","MH","MR","MU","MX","FM","MD","MC","MN","ME","MA","MZ","MM","NA","NR","NP","NL","NZ","NI","NE","NG","KP","MK","NO","OM","PK","PW","PS","PA","PG","PY","PE","PH","PL","PT","QA","RO","RU","RW","KN","LC","VC","WS","SM","ST","SA","SN","RS","SC","SL","SG","SK","SI","SB","SO","ZA","KR","SS","ES","LK","SD","SR","SE","CH","SY","TW","TJ","TZ","TH","TL","TG","TO","TT","TN","TR","TM","TV","UG","UA","AE","GB","UY","UZ","VU","VA","VE","VN","YE","ZM","ZW"],
+
+  "disclosures": {
+    "intro": {
+      "en": "This step explains what our document preparation service includes, important limitations, and your responsibilities as the applicant. Please review each section below and confirm your understanding before continuing to payment.",
+      "es": "Este paso explica lo que incluye nuestro servicio de preparación de documentos, sus limitaciones importantes y sus responsabilidades como solicitante. Revise cada sección y confirme que la entiende antes de continuar al pago."
+    },
+    "sections": [
+      {
+        "id": "about",
+        "title": { "en": "About This Service", "es": "Sobre este servicio" },
+        "byService": {
+          "aos": {
+            "heading": { "en": "Adjustment of Status Document Preparation", "es": "Preparación de documentos para Ajuste de Estatus" },
+            "bullets": [ { "en": "This service helps organize and prepare Adjustment of Status paperwork based on the information you provide", "es": "Este servicio ayuda a organizar y preparar los documentos de Ajuste de Estatus con base en la información que usted proporciona" } ]
+          },
+          "n400": {
+            "heading": { "en": "U.S. Citizenship / Naturalization Preparation", "es": "Preparación para Ciudadanía / Naturalización" },
+            "bullets": [ { "en": "This service helps organize and prepare U.S. Citizenship / Naturalization (Form N-400) paperwork based on the information you provide", "es": "Este servicio ayuda a organizar y preparar los documentos de Ciudadanía / Naturalización (Formulario N-400) con base en la información que usted proporciona" } ]
+          },
+          "i90": {
+            "confirm": true,
+            "heading": { "en": "Green Card Renewal / Replacement Preparation", "es": "Preparación para Renovación / Reemplazo de Green Card" },
+            "bullets": [ { "en": "This service helps organize and prepare Green Card Renewal / Replacement (Form I-90) paperwork based on the information you provide", "es": "Este servicio ayuda a organizar y preparar los documentos de Renovación / Reemplazo de Green Card (Formulario I-90) con base en la información que usted proporciona" } ]
+          },
+          "i751": {
+            "confirm": true,
+            "heading": { "en": "Removal of Conditions Preparation", "es": "Preparación para Remoción de Condiciones" },
+            "bullets": [ { "en": "This service helps organize and prepare Removal of Conditions (Form I-751) paperwork based on the information you provide", "es": "Este servicio ayuda a organizar y preparar los documentos de Remoción de Condiciones (Formulario I-751) con base en la información que usted proporciona" } ]
+          },
+          "k1": {
+            "confirm": true,
+            "heading": { "en": "Fiancé(e) Visa Preparation", "es": "Preparación para Visa de Prometido(a)" },
+            "bullets": [ { "en": "This service helps organize and prepare Fiancé(e) Visa (Form I-129F) paperwork based on the information you provide", "es": "Este servicio ayuda a organizar y preparar los documentos de Visa de Prometido(a) (Formulario I-129F) con base en la información que usted proporciona" } ]
+          }
+        },
+        "bullets": [
+          { "en": "Information is collected through a secure online system", "es": "La información se recopila mediante un sistema seguro en línea" },
+          { "en": "Immigration forms are prepared using your responses", "es": "Los formularios de inmigración se preparan con sus respuestas" },
+          { "en": "Prepared materials are organized for next steps and review", "es": "Los materiales preparados se organizan para los siguientes pasos y su revisión" }
+        ],
+        "checkbox": { "en": "I understand what this document preparation service includes.", "es": "Entiendo lo que incluye este servicio de preparación de documentos." }
+      },
+      {
+        "id": "not_included",
+        "title": { "en": "What This Service Is Not", "es": "Lo que este servicio no es" },
+        "heading": { "en": "Important limitations", "es": "Limitaciones importantes" },
+        "bullets": [
+          { "en": "This service does not provide legal advice", "es": "Este servicio no brinda asesoría legal" },
+          { "en": "This service does not create an attorney-client relationship", "es": "Este servicio no crea una relación abogado-cliente" },
+          { "en": "We do not represent applicants before USCIS", "es": "No representamos a los solicitantes ante USCIS",
+            "k1": { "confirm": true, "en": "We do not represent applicants before USCIS or the U.S. Department of State", "es": "No representamos a los solicitantes ante USCIS ni ante el Departamento de Estado de EE. UU." } },
+          { "en": "We do not file applications on your behalf", "es": "No presentamos solicitudes en su nombre" },
+          { "en": "We do not communicate with USCIS for you", "es": "No nos comunicamos con USCIS por usted",
+            "k1": { "confirm": true, "en": "We do not communicate with USCIS or the U.S. consulate for you", "es": "No nos comunicamos con USCIS ni con el consulado de EE. UU. por usted" } }
+        ],
+        "checkbox": { "en": "I understand what this service does not include.", "es": "Entiendo lo que este servicio no incluye." }
+      },
+      {
+        "id": "professionals",
+        "title": { "en": "Role of Immigration Professionals", "es": "Papel de los profesionales de inmigración" },
+        "heading": { "en": "Review and preparation support", "es": "Apoyo de revisión y preparación" },
+        "bullets": [
+          { "en": "Prepared materials may be reviewed for completeness and consistency", "es": "Los materiales preparados pueden revisarse para verificar que estén completos y sean coherentes" },
+          { "en": "Reviews focus on document preparation, not legal strategy", "es": "Las revisiones se enfocan en la preparación de documentos, no en estrategia legal" },
+          { "en": "Review does not include legal advice or legal representation", "es": "La revisión no incluye asesoría legal ni representación legal" },
+          { "en": "Some cases may require separate legal services outside this platform", "es": "Algunos casos pueden requerir servicios legales por separado, fuera de esta plataforma" }
+        ],
+        "checkbox": { "en": "I understand the limited role of immigration professionals in this service.", "es": "Entiendo el papel limitado de los profesionales de inmigración en este servicio." }
+      },
+      {
+        "id": "responsibilities",
+        "title": { "en": "Applicant Responsibilities", "es": "Responsabilidades del solicitante" },
+        "heading": { "en": "Your responsibilities as the applicant", "es": "Sus responsabilidades como solicitante" },
+        "bullets": [
+          { "en": "You must provide truthful, complete, and accurate information", "es": "Debe proporcionar información verdadera, completa y correcta" },
+          { "en": "You are responsible for reviewing all prepared forms before filing", "es": "Usted es responsable de revisar todos los formularios preparados antes de presentarlos" },
+          { "en": "You are responsible for filing your application with USCIS", "es": "Usted es responsable de presentar su solicitud ante USCIS" },
+          { "en": "You are responsible for paying all government filing fees", "es": "Usted es responsable de pagar todas las tarifas gubernamentales de presentación" },
+          { "en": "You are responsible for responding to USCIS requests or notices", "es": "Usted es responsable de responder a las solicitudes o avisos de USCIS" }
+        ],
+        "checkbox": { "en": "I understand my responsibilities as the applicant.", "es": "Entiendo mis responsabilidades como solicitante." }
+      },
+      {
+        "id": "no_guarantee",
+        "title": { "en": "No Guarantee of Outcome", "es": "Sin garantía de resultado" },
+        "heading": { "en": "USCIS decision-making", "es": "Decisiones de USCIS" },
+        "bullets": [
+          { "en": "All immigration decisions are made by USCIS", "es": "Todas las decisiones de inmigración las toma USCIS",
+            "k1": { "confirm": true, "en": "All immigration decisions are made by USCIS and the U.S. Department of State", "es": "Todas las decisiones de inmigración las toman USCIS y el Departamento de Estado de EE. UU." } },
+          { "en": "Approval is not guaranteed", "es": "La aprobación no está garantizada" },
+          { "en": "Processing times vary and are outside our control", "es": "Los tiempos de procesamiento varían y están fuera de nuestro control" }
+        ],
+        "checkbox": { "en": "I understand that approval and processing time are not guaranteed.", "es": "Entiendo que la aprobación y el tiempo de procesamiento no están garantizados." }
+      },
+      {
+        "id": "payment_scope",
+        "title": { "en": "Scope of Payment", "es": "Alcance del pago" },
+        "heading": { "en": "What your payment covers", "es": "Lo que cubre su pago" },
+        "bullets": [
+          { "en": "Payment covers document preparation services only", "es": "El pago cubre solo los servicios de preparación de documentos" },
+          { "en": "Government filing fees are not included", "es": "Las tarifas gubernamentales de presentación no están incluidas" },
+          { "en": "USCIS fees are paid separately by the applicant", "es": "Las tarifas de USCIS las paga el solicitante por separado" },
+          { "en": "Additional services, if needed, are outside the scope of this service", "es": "Los servicios adicionales, si se necesitan, están fuera del alcance de este servicio" }
+        ],
+        "checkbox": { "en": "I understand what my payment covers and does not cover.", "es": "Entiendo lo que mi pago cubre y lo que no cubre." }
+      },
+      {
+        "id": "applies_to",
+        "title": { "en": "Who This Service Applies To", "es": "A quién aplica este servicio" },
+        "byService": {
+          "aos": {
+            "heading": { "en": "Adjustment of Status eligibility categories", "es": "Categorías de elegibilidad para Ajuste de Estatus" },
+            "text": { "en": "This Adjustment of Status service applies to applicants adjusting status based on a qualifying relationship to a U.S. citizen, including:", "es": "Este servicio de Ajuste de Estatus aplica a solicitantes que ajustan su estatus con base en una relación que califica con un ciudadano estadounidense, incluyendo:" },
+            "bullets": [
+              { "en": "Spouse of a U.S. citizen", "es": "Cónyuge de un ciudadano estadounidense" },
+              { "en": "Parent of a U.S. citizen", "es": "Padre o madre de un ciudadano estadounidense" },
+              { "en": "Child of a U.S. citizen", "es": "Hijo o hija de un ciudadano estadounidense" }
+            ],
+            "checkbox": { "en": "I understand who this Adjustment of Status service applies to.", "es": "Entiendo a quién aplica este servicio de Ajuste de Estatus." }
+          },
+          "n400": {
+            "heading": { "en": "U.S. Citizenship / Naturalization eligibility categories", "es": "Categorías de elegibilidad para Ciudadanía / Naturalización" },
+            "text": { "en": "This citizenship service is intended for applicants filing Form N-400 under a standard eligibility basis, including:", "es": "Este servicio de ciudadanía es para solicitantes que presentan el Formulario N-400 con una base de elegibilidad estándar, incluyendo:" },
+            "bullets": [
+              { "en": "5 years as a lawful permanent resident", "es": "5 años como residente permanente legal" },
+              { "en": "3 years as a lawful permanent resident married to a U.S. citizen", "es": "3 años como residente permanente legal casado(a) con un ciudadano estadounidense" },
+              { "en": "Certain qualifying military service", "es": "Ciertos servicios militares que califican" },
+              { "en": "Certain U.S. national pathways (American Samoa / Swains Island)", "es": "Ciertas vías para nacionales de EE. UU. (Samoa Americana / Isla Swains)" }
+            ],
+            "after": { "en": "Some situations require legal review and may be referred out before document preparation begins", "es": "Algunas situaciones requieren revisión legal y pueden ser referidas antes de comenzar la preparación de documentos" },
+            "checkbox": { "en": "I understand who this U.S. Citizenship / Naturalization service applies to.", "es": "Entiendo a quién aplica este servicio de Ciudadanía / Naturalización." }
+          },
+          "i90": {
+            "confirm": true,
+            "heading": { "en": "Green Card Renewal / Replacement eligibility", "es": "Elegibilidad para Renovación / Reemplazo de Green Card" },
+            "text": { "en": "This service is intended for lawful permanent residents with a 10-year green card who need to:", "es": "Este servicio es para residentes permanentes legales con una green card de 10 años que necesitan:" },
+            "bullets": [
+              { "en": "Renew a card that has expired or expires within 6 months", "es": "Renovar una tarjeta vencida o que vence dentro de 6 meses" },
+              { "en": "Replace a card that was lost, stolen, damaged, or destroyed", "es": "Reemplazar una tarjeta perdida, robada, dañada o destruida" },
+              { "en": "Correct or update information on the card", "es": "Corregir o actualizar la información de la tarjeta" }
+            ],
+            "after": { "en": "2-year conditional green cards are not renewed with this service", "es": "Las green cards condicionales de 2 años no se renuevan con este servicio" },
+            "checkbox": { "en": "I understand who this Green Card Renewal / Replacement service applies to.", "es": "Entiendo a quién aplica este servicio de Renovación / Reemplazo de Green Card." }
+          },
+          "i751": {
+            "confirm": true,
+            "heading": { "en": "Removal of Conditions eligibility", "es": "Elegibilidad para Remoción de Condiciones" },
+            "text": { "en": "This service is intended for conditional residents with a 2-year green card based on marriage, including:", "es": "Este servicio es para residentes condicionales con una green card de 2 años basada en matrimonio, incluyendo:" },
+            "bullets": [
+              { "en": "Married couples filing together in the 90 days before the card expires", "es": "Parejas casadas que presentan juntas en los 90 días antes de que venza la tarjeta" },
+              { "en": "Certain waiver cases (divorce or the death of a spouse)", "es": "Ciertos casos de exención (divorcio o fallecimiento del cónyuge)" },
+              { "en": "Children filing separately", "es": "Hijos que presentan por separado" }
+            ],
+            "after": { "en": "Some situations require legal review and may be referred out before document preparation begins", "es": "Algunas situaciones requieren revisión legal y pueden ser referidas antes de comenzar la preparación de documentos" },
+            "checkbox": { "en": "I understand who this Removal of Conditions service applies to.", "es": "Entiendo a quién aplica este servicio de Remoción de Condiciones." }
+          },
+          "k1": {
+            "confirm": true,
+            "heading": { "en": "Fiancé(e) Visa eligibility", "es": "Elegibilidad para Visa de Prometido(a)" },
+            "text": { "en": "This service is intended for U.S. citizens bringing a fiancé(e) to the United States, where:", "es": "Este servicio es para ciudadanos estadounidenses que traen a su prometido(a) a los Estados Unidos, cuando:" },
+            "bullets": [
+              { "en": "The sponsor is a U.S. citizen", "es": "El patrocinador es ciudadano estadounidense" },
+              { "en": "Both people plan to marry within 90 days of the fiancé(e)'s arrival", "es": "Ambos planean casarse dentro de los 90 días después de la llegada del prometido(a)" },
+              { "en": "The couple has met in person within the last 2 years", "es": "La pareja se ha conocido en persona en los últimos 2 años" }
+            ],
+            "after": { "en": "Some situations require legal review and may be referred out before document preparation begins", "es": "Algunas situaciones requieren revisión legal y pueden ser referidas antes de comenzar la preparación de documentos" },
+            "checkbox": { "en": "I understand who this Fiancé(e) Visa service applies to.", "es": "Entiendo a quién aplica este servicio de Visa de Prometido(a)." }
+          }
+        }
+      },
+      {
+        "id": "final",
+        "title": { "en": "Final Confirmation", "es": "Confirmación final" },
+        "heading": { "en": "Please confirm before continuing.", "es": "Por favor confirme antes de continuar." },
+        "bullets": [],
+        "checkbox": { "en": "I have reviewed the disclosures above and wish to continue to secure payment.", "es": "He revisado la información anterior y deseo continuar al pago seguro." }
+      }
+    ],
+    "button": { "en": "Continue to Secure Payment", "es": "Continuar al pago seguro" }
+  }
+}
