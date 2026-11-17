@@ -46,7 +46,7 @@ function sendEvent(type, data) {
 }
 function quizData() {
   const s = E.summary(S.answers);
-  return { service: s.service, price: s.price, outcome: s.outcome, stopCode: s.stopCode, flags: s.flags, answers: s.answers, furthest: s.furthest };
+  return { service: s.service, price: s.price, outcome: s.outcome, stopCode: s.stopCode, flags: s.flags, answers: s.answers, furthest: s.furthest, section: s.section };
 }
 function maybeAbandon() {
   if (!S || !S.leadId || !['q', 'contact'].includes(S.screen)) return;
@@ -55,7 +55,8 @@ function maybeAbandon() {
   if (sig === S.abandonSig) return;
   S.abandonSig = sig;
   const b = base();
-  tracker.beacon(b, 'abandon', { service: d.service, flags: d.flags, answers: d.answers, furthest: S.screen === 'contact' ? 'Contact' : d.furthest });
+  tracker.beacon(b, 'abandon', { service: d.service, flags: d.flags, answers: d.answers, furthest: S.screen === 'contact' ? 'Contact' : d.furthest,
+    section: S.screen === 'contact' ? flow.sections.contact.en : d.section });
   save();
 }
 

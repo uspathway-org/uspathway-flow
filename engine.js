@@ -191,6 +191,8 @@ export function createEngine(flow, config) {
     const w = walk(answers);
     const service = w.service || '';
     const svc = config.services[service];
+    const furthest = w.current || w.steps[w.steps.length - 1].q;
+    const fq = Q[furthest];
     return {
       service,
       price: svc ? svc.price : '',
@@ -198,7 +200,9 @@ export function createEngine(flow, config) {
       stopCode: w.stopCode,
       flags: w.flags,
       answers: readableAnswers(answers),
-      furthest: w.current || w.steps[w.steps.length - 1].q,
+      furthest,
+      // English section name of the furthest question, for the tracker's Funnel (staff read English)
+      section: fq && flow.sections[fq.section] ? flow.sections[fq.section].en : '',
       done: w.done
     };
   }
