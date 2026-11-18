@@ -24,7 +24,8 @@ export const CONFIG = {
   services: {
     aos:  { price: 1099, online: true, paymentLink: 'https://buy.stripe.com/bJebJ1fCJbe164edzvcs804', testLink: 'https://buy.stripe.com/test_bJebJ1fCJbe164edzvcs804' },
     n400: { price: 749,  online: true, paymentLink: 'https://buy.stripe.com/eVq5kD0HP5THakugLHcs803', testLink: 'https://buy.stripe.com/test_eVq5kD0HP5THakugLHcs803' },
-    i90:  { price: 499,  online: true, paymentLink: 'https://buy.stripe.com/dRm00j8ah2Hv1NY1QNcs802', testLink: 'https://buy.stripe.com/test_dRm00j8ah2Hv1NY1QNcs802' },
+    // M5.4 TEMPORARY: I-90 opens the $1 live test link. Put back https://buy.stripe.com/dRm00j8ah2Hv1NY1QNcs802 after the test.
+    i90:  { price: 499,  online: true, paymentLink: 'https://buy.stripe.com/6oUaEXaip0zngISfHDcs805', testLink: 'https://buy.stripe.com/test_dRm00j8ah2Hv1NY1QNcs802' },
     i751: { price: 449,  online: true, paymentLink: 'https://buy.stripe.com/28E28r0HP6XLgISdzvcs801', testLink: 'https://buy.stripe.com/test_28E28r0HP6XLgISdzvcs801' },
     k1:   { price: 998,  online: true, paymentLink: 'https://buy.stripe.com/eVqcN54Y52HveAKcvrcs800', testLink: 'https://buy.stripe.com/test_eVqcN54Y52HveAKcvrcs800' }
   }
